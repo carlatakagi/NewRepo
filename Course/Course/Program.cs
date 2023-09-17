@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Course
 {
@@ -6,17 +7,18 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            byte n1 = 126;
-            int n2 = 1000;
-            int n3 = 2147483647;
-            long n4 = 2147483648L;
+            Calculadora calc = new Calculadora();
 
-            n1++;
+            Console.Write("Entre o valor do raio: ");
 
-            Console.WriteLine(n1);
-            Console.WriteLine(n2);
-            Console.WriteLine(n3);
-            Console.WriteLine(n4);
+            double raio = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+
+            double circ = calc.Circunferencia(raio);
+            double volume = calc.Volume(raio);
+
+            Console.WriteLine("Circunferencia: " + circ.ToString("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine("Volume: " + volume.ToString("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine("Valor de Pi: " + calc.Pi.ToString("F2", CultureInfo.InvariantCulture));
         }
     }
 }
