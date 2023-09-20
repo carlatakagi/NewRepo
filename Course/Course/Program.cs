@@ -7,19 +7,47 @@ namespace Course
     {
         static void Main(string[] args)
         {
-            Calculadora calc = new Calculadora();
 
-            Console.Write("Entre o valor do raio: ");
+            BankAccount account;
 
-            double raio = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            Console.Write("Entre o número da conta: ");
+            int number = int.Parse(Console.ReadLine());
+            Console.Write("Entre o titular da conta: ");
+            string owner = Console.ReadLine();
+            Console.Write("Haverá depósito inicial (s/n)? ");
+            char resp = char.Parse(Console.ReadLine());
+            if (resp == 's' || resp == 'S')
+            {
+                Console.Write("Entre o valor de depósito inicial: ");
+                double initialDeposit = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+                account = new BankAccount(number, owner, initialDeposit);
+            }
+            else
+            {
+                account = new BankAccount(number, owner);
+            }
 
-            double circ = calc.Circunferencia(raio);
-            double volume = calc.Volume(raio);
+            Console.WriteLine();
+            Console.WriteLine("Dados da conta:");
+            Console.WriteLine(account);
 
-            Console.WriteLine("Circunferencia: " + circ.ToString("F2", CultureInfo.InvariantCulture));
-            Console.WriteLine("Volume: " + volume.ToString("F2", CultureInfo.InvariantCulture));
-            Console.WriteLine("Valor de Pi: " + calc.Pi.ToString("F2", CultureInfo.InvariantCulture));
-            Console.WriteLine("Valor de Pi: " + calc.Pi.ToString("F2", CultureInfo.InvariantCulture));
+            Console.WriteLine();
+            Console.Write("Entre um valor para depósito: ");
+
+            double amount = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            account.Deposit(amount);
+
+            Console.WriteLine("Dados da conta atualizados:");
+            Console.WriteLine(account);
+
+            Console.WriteLine();
+            Console.Write("Entre um valor para saque: ");
+
+            amount = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
+            account.Withdraw(amount);
+
+            Console.WriteLine("Dados da conta atualizados:");
+            Console.WriteLine(account);
         }
     }
 }
